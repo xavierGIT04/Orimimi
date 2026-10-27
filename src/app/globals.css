@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+    /* Nuancier complet Primary (Vert foncé du logo) */
+    --color-primary-50: #eef7f4;
+    --color-primary-100: #d5ebe4;
+    --color-primary-200: #abd6c9;
+    --color-primary-300: #76baa7;
+    --color-primary-400: #3f9a85;
+    --color-primary-500: #1d7a65;
+    --color-primary-600: #0d6453;
+    --color-primary-700: #055448;
+    --color-primary-800: #04433a;
+    --color-primary-900: #03342d;
+    --color-primary-950: #011d19;
+
+    /* Nuancier complet Accent (Vert clair de la feuille) */
+    --color-accent-50: #f6faeb;
+    --color-accent-100: #eaf4d3;
+    --color-accent-200: #d5e8a8;
+    --color-accent-300: #bedb7f;
+    --color-accent-400: #b0d16a;
+    --color-accent-500: #92b84a;
+    --color-accent-600: #729438;
+    --color-accent-700: #587230;
+    --color-accent-800: #475a2b;
+    --color-accent-900: #3c4d27;
+
+    /* Couleurs spécifiques */
+    --color-wave: #1f5f2a;
+    --color-cream: #f6f1dd;
+
+    /* Polices personnalisées */
+    --font-sans: var(--font-sans), system-ui, sans-serif;
+    --font-script: var(--font-script), cursive;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    body {
+        @apply bg-white font-sans text-primary-900 antialiased;
+    }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-accent-500;
+        outline-style: solid;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
 }
