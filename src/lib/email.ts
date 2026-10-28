@@ -3,7 +3,7 @@ import { site } from "./site";
 
 export type Mail = { to: string; subject: string; html: string; replyTo?: string };
 
-let transporter: nodemailer.Transporter | null = null;
+let transporter: Transporter | null = null;
 
 function getTransporter() {
   if (!transporter) {
