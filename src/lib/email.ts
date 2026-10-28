@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import nodemailer, { type Transporter } from "nodemailer";
 import { site } from "./site";
 
 export type Mail = { to: string; subject: string; html: string; replyTo?: string };
