@@ -33,6 +33,18 @@
     /* Polices personnalisées */
     --font-sans: var(--font-sans), system-ui, sans-serif;
     --font-script: var(--font-script), cursive;
+
+    /* Easing + animations */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-drift: drift 20s ease-in-out infinite alternate;
+    --animate-hero-zoom: hero-zoom 1.8s var(--ease-out-expo) both;
+    --animate-menu-in: menu-in 0.25s var(--ease-out-expo) both;
+
+    @keyframes float { 50% { transform: translate3d(0, -6px, 0); } }
+    @keyframes drift { to { transform: translate3d(40px, 24px, 0) scale(1.08); } }
+    @keyframes hero-zoom { from { transform: scale(1.12); } }
+    @keyframes menu-in { from { opacity: 0; transform: translateY(-6px) scale(0.97); } }
 }
 
 @layer base {
@@ -48,10 +60,23 @@
         @apply outline-2 outline-offset-2 outline-accent-500;
         outline-style: solid;
     }
+    :root { interpolate-size: allow-keywords; }
+
+    /* FAQ : ouverture animée (amélioration progressive, ignorée si non supporté) */
+    details::details-content {
+        block-size: 0;
+        overflow: hidden;
+        transition: block-size 0.35s var(--ease-out-expo), content-visibility 0.35s allow-discrete;
+    }
+    details[open]::details-content { block-size: auto; }
 
     @media (prefers-reduced-motion: reduce) {
-        html {
-            scroll-behavior: auto;
+        *, ::before, ::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
         }
     }
+
+
 }
